@@ -5,22 +5,6 @@
 -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
 -A FORWARD -s 192.168.100.0/255.255.255.0 -j ACCEPT
 -A FORWARD -j REJECT --reject-with icmp-port-unreachable
--A OUTPUT -d account.sonyentertainmentnetwork.com -j DROP
--A OUTPUT -d auth.np.ac.playstation.net -j DROP
--A OUTPUT -d auth.api.sonyentertainmentnetwork.com -j DROP
--A OUTPUT -d auth.api.np.ac.playstation.net -j DROP
--A OUTPUT -d account.sonyentertainmentnetwork.com -j DROP
--A OUTPUT -d auth.np.ac.playstation.net -j DROP
--A OUTPUT -d auth.api.sonyentertainmentnetwork.com -j DROP
--A OUTPUT -d auth.api.np.ac.playstation.net -j DROP
--A OUTPUT -d 23.66.241.170 -j DROP
--A OUTPUT -d 23.66.255.37 -j DROP
--A OUTPUT -d 23.66.255.232 -j DROP
--A OUTPUT -d 23.66.240.200 -j DROP
--A OUTPUT -d 128.199.213.5 -j DROP
--A OUTPUT -d 128.199.196.170 -j DROP
--A OUTPUT -d 103.52.146.66 -j DROP
--A OUTPUT -d 5.189.172.204 -j DROP
 COMMIT
 
 *nat
