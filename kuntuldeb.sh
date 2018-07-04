@@ -27,16 +27,11 @@ ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 service ssh restart
 
-# set repo
-wget -O /etc/apt/sources.list "http://vira.cf/sources.list.debian7"
-wget "http://www.dotdeb.org/dotdeb.gpg"
-cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
-
 # update
 apt-get update
 
 # install essential package
-apt-get -y install nano iptables dnsutils openvpn screen whois ngrep unzip
+apt-get -y install nano iptables dnsutils screen whois ngrep unzip
 
 echo "clear" >> .bashrc
 echo 'echo -e "Selamat datang di server $HOSTNAME" | lolcat' >> .bashrc
@@ -157,24 +152,15 @@ chmod +x about
 # finishing
 cd
 chown -R www-data:www-data /home/vps/public_html
+service nginx start
 service openvpn restart
 service cron restart
 service ssh restart
 service dropbear restart
 service squid3 restart
+service webmin restart
 rm -rf ~/.bash_history && history -c
 echo "unset HISTFILE" >> /etc/profile
-
-# install neofetch
-echo "deb http://dl.bintray.com/dawidd6/neofetch jessie main" | tee -a /etc/apt/sources.list
-curl "https://bintray.com/user/downloadSubjectPublicKey?username=bintray"| apt-key add -
-apt-get update
-apt-get install neofetch
-
-echo "deb http://dl.bintray.com/dawidd6/neofetch jessie main" | tee -a /etc/apt/sources.list
-curl "https://bintray.com/user/downloadSubjectPublicKey?username=bintray"| apt-key add -
-apt-get update
-apt-get install neofetch
 
 # info
 clear
@@ -220,4 +206,3 @@ echo "VPS AUTO REBOOT TIAP JAM 12 MALAM"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
 cd
-rm -f /root/mbakdeb.sh
